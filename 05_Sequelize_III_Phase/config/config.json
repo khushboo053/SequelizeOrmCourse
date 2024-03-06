@@ -2,22 +2,22 @@
   "development": {
     "username": "${DB_USERNAME}",
     "password": "${DB_PASSWORD}",
-    "database": "orm_relationships",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "database": "${DB_DATABASE}",
+    "host": "${DB_HOST}",
+    "dialect": "${DB_DIALECT}"
   },
   "test": {
-    "username": "root",
+    "username": "${DB_USERNAME}",
     "password": null,
     "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "host": "${DB_HOST}",
+    "dialect": "${DB_DIALECT}"
   },
   "production": {
-    "username": "root",
+    "username": "${DB_USERNAME}",
     "password": null,
     "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "host": "${DB_HOST}",
+    "dialect": "${DB_DIALECT}"
   }
 }
