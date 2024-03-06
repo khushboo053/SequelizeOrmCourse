@@ -1,0 +1,87 @@
+In Terminal:
+List of commands: npx sequelize -help
+To start the Sequelize CLI (Create 4 folders): npx sequelize init
+Individually initializing 4 folders: 
+npx sequelize init:config
+npx sequelize init:migrations
+npx sequelize init:models 
+npx sequelize init:seeders     
+
+4 Folders: 
+config- contains config.json file with database connection details, Any global project settings can be stored in this folder
+migrations- schema of our database table or Table structure
+models- contains all your models, interact with our database for our CRUD operations
+seeders- Stores seeder file which basically push dummy data inside our table
+
+To get list of all commands: npx sequelize
+
+Whenever we switch from development to testing or production, we can do changes in ./models/index.js file in this below code:
+const env = process.env.NODE_ENV || 'development';
+
+Create Model Migration to check which options it gives: npx sequelize model:generate --help
+
+Create MODELMIGRATION: 
+npx sequelize model:generate --name Product --attributes name:string,description:string,amount:integer
+OR 
+npx sequelize model:generate --name=Product --attributes=name:string,description:string,amount:integer
+
+After a file created in migrations & models folder, If we do any changes in that manually then run this beow command:
+First, create database in mysql then run below command 
+To execute our migration file to our DB connection: npx sequelize db:migrate
+
+This above command create 2 tables in DB: - 
+products, 
+sequeizemeta: All the migrations which we will run inside our project application will go & store to keep track of migrations inside the table 
+
+ROLLBACK MIGRATIONS
+
+npx sequelize model:generate --name Category --attributes name:string,categoryImage:string,status:integer
+Make timestamps: false in models file & remove createdAt & updatedAt attributes from migrations file
+npx sequelize db:migrate
+npx sequelize db:migrate:undo:all (DELETE ALL MODELS) 
+npx sequelize db:migrate (run pending migrations)
+npx sequelize db:migrate:undo (DELETE LAST MODEL CREATED)
+npx sequelize db:migrate:status (LIST THE STATUS OF ALL MIGRATIONS)
+
+SEEDER file
+Inside a seeder file, there ia no line which specify abt the table in which we r going to seed that. 
+It means that any seeder file used to seed any data inside any migrations
+
+npx sequelize seed:generate --help
+npx sequelize seed:generate --name test-products
+npx sequelize db:seed:all (INSERT DUMMY DATA INTO TABLE)
+npx sequelize db:seed:all (INSERT AGAIN DUMMY DATA INTO TABLE)
+
+RUN & TEST SPECIFIC SEEDER file
+npx sequelize seed:generate --name test-category
+npx sequelize db:seed --seed 20240305061858-test-category.js    
+
+DELETES DATA FROM database
+npx sequelize db:seed:undo:all
+npx sequelize db:seed:all
+npx sequelize db:seed:undo --seed 20240305061858-test-category.js
+
+FAKER NPM PACKAGE IN SEEDER
+npm i @faker-js/faker 
+Refer this to add attributes in test-product seeder file: https://fakerjs.dev/api/commerce.html#product
+npx sequelize db:seed:undo:all
+npx sequelize db:seed
+
+Refer this to add attributes in test-category seeder file: https://fakerjs.dev/api/commerce.html#product
+npx sequelize db:seed:undo:all
+npx sequelize db:seed:all
+
+MODELS WHERE CONDITIONAL STMT
+Refer to this docs for Querying in ./routes/product.js: https://sequelize.org/docs/v6/core-concepts/model-querying-basics/
+
+REGISTER STUDENT api
+npx sequelize model:generate --name Student --attributes name:string,rollNo:integer,email:string
+
+PM2 In Node JS Application
+Instead of single app, if we have to manage another app with nodejs. It will simultaneously handle each nodejs app with each different port. 
+
+npm i pm2  -g
+pm2 list 
+pm2 start app.js
+pm2 list
+pm2 stop app.js

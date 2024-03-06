@@ -1,0 +1,6 @@
+Types of Modules:
+1) Core Modules - os, fs, etc
+2) Local Modules - User defined Modules
+3) Third Party Modules - Sequelize 
+
+NPM is a command line tool that installs, updates or uninstalls Node.js packages in our application

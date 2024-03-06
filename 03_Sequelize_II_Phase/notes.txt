@@ -1,0 +1,4 @@
+Bcrypt
+Here salt is no. of salt round value
+const salt = bcrypt.genSaltSync(saltRounds);
+const hash = bcrypt.hashSync(myPlaintextPassword, salt);

@@ -1,0 +1,38 @@
+- Install Packages: npm i sequelize sequelize-cli mysql2 express
+
+ONE TO ONE RELATIONSHIP
+
+- Create User model: npx sequelize model:generate --name User --attributes name:string,phoneNo:string
+- Create Email model: npx sequelize model:generate --name Email --attributes emailAddress:string,userId:integer
+- Create Db in MySQL & replace credentials with your credentials in config.json
+
+- Make changes in models & migrations by making timestamps false & adding foreign key in email migrations
+
+- npx sequelize db:migrate
+
+ONE TO MANY
+
+- Create Post model: npx sequelize model:generate --name Post --attributes name:string,context:string
+- Create Comment model: npx sequelize model:generate --name Comment --attributes comment_text:string,postId:integer
+- Create Db in MySQL & replace credentials with your credentials in config.json
+
+- Make changes in models & migrations by making timestamps false & adding foreign key in Comment migrations
+
+- npx sequelize db:migrate
+
+MANY TO MANY
+A user have many roles, A role have many users
+
+- Create User model: npx sequelize model:generate --name User_u --attributes name:string,email:string
+- Create Role model: npx sequelize model:generate --name Role --attributes name:string
+- Create UserRole model: npx sequelize model:generate --name UserRole --attributes userId:integer,roleId:integer
+- Create Db in MySQL & replace credentials with your credentials in config.json
+
+- Make changes in models & migrations by making timestamps false & adding foreign key in UserRole models migrations
+
+- npx sequelize db:migrate
+
+
+- Create User model: npx sequelize model:generate --name Actor --attributes name:string,email:string
+- Create Role model: npx sequelize model:generate --name Movie --attributes name:string
+- Create UserRole model: npx sequelize model:generate --name ActorMovie --attributes actorId:integer,movieId:integer
